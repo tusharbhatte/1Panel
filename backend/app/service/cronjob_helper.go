@@ -93,6 +93,17 @@ func (u *CronjobService) HandleJob(cronjob *model.Cronjob) {
 			}
 			cronjobRepo.EndRecords(record, constant.StatusFailed, err.Error(), record.Records)
 			handleCronJobAlert(cronjob)
+			
+			// Send mlBot notification for failure
+		if cronjob.NotifyOnFailure {
+			mlbotService := NewIMLBotService()
+			go func() {
+				if sendErr := mlbotService.SendCronjobNotification(*cronjob, constant.StatusFailed, err.Error()); sendErr != nil {
+					global.LOG.Errorf("mlBot notification failed for cronjob %s: %v", cronjob.Name, sendErr)
+				}
+			}()
+		}
+			
 			return
 		}
 		if len(message) != 0 {
@@ -102,6 +113,16 @@ func (u *CronjobService) HandleJob(cronjob *model.Cronjob) {
 			}
 		}
 		cronjobRepo.EndRecords(record, constant.StatusSuccess, "", record.Records)
+		
+		// Send mlBot notification for success
+	if cronjob.NotifyOnSuccess {
+		mlbotService := NewIMLBotService()
+		go func() {
+			if sendErr := mlbotService.SendCronjobNotification(*cronjob, constant.StatusSuccess, ""); sendErr != nil {
+				global.LOG.Errorf("mlBot notification failed for cronjob %s: %v", cronjob.Name, sendErr)
+			}
+		}()
+	}
 	}()
 }
 

@@ -11,6 +11,7 @@ func commonGroups() []CommonRouter {
 		&ToolboxRouter{},
 		&TerminalRouter{},
 		&CronjobRouter{},
+		&MLBotRouter{},
 		&SettingRouter{},
 		&AppRouter{},
 		&WebsiteRouter{},

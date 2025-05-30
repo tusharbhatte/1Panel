@@ -385,6 +385,17 @@
                         </el-form-item>
                     </div>
 
+                    <div>
+                        <el-form-item>
+                            <el-checkbox v-model="dialogData.rowData!.notifyOnSuccess" label="成功时通知" />
+                            <span class="input-help">任务执行成功时发送 mlBot 通知</span>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-checkbox v-model="dialogData.rowData!.notifyOnFailure" label="失败时通知" />
+                            <span class="input-help">任务执行失败时发送 mlBot 通知（默认启用）</span>
+                        </el-form-item>
+                    </div>
+
                     <el-form-item :label="$t('cronjob.retainCopies')" prop="retainCopies">
                         <el-input-number
                             style="width: 200px"
@@ -507,7 +518,15 @@ const acceptParams = (params: DialogProps): void => {
     dialogData.value.rowData!.isCustom =
         dialogData.value.rowData!.command !== 'sh' &&
         dialogData.value.rowData!.command !== 'bash' &&
-        dialogData.value.rowData!.command === 'ash';
+        dialogData.value.rowData!.command !== 'ash';
+
+    // Set default notification values
+    if (dialogData.value.rowData!.notifyOnSuccess === undefined) {
+        dialogData.value.rowData!.notifyOnSuccess = false;
+    }
+    if (dialogData.value.rowData!.notifyOnFailure === undefined) {
+        dialogData.value.rowData!.notifyOnFailure = true; // Default enabled for failure notifications
+    }
 
     title.value = i18n.global.t('cronjob.' + dialogData.value.title);
     if (dialogData.value?.rowData?.exclusionRules) {

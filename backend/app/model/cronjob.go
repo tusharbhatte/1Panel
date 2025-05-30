@@ -34,6 +34,10 @@ type Cronjob struct {
 	EntryIDs string       `gorm:"type:varchar(64)" json:"entryIDs"`
 	Records  []JobRecords `json:"records"`
 	Secret   string       `gorm:"type:varchar(64)" json:"secret"`
+	
+	// mlBot 通知配置
+	NotifyOnSuccess bool `gorm:"type:tinyint(1);default:0" json:"notifyOnSuccess"`
+	NotifyOnFailure bool `gorm:"type:tinyint(1);default:1" json:"notifyOnFailure"`
 }
 
 type JobRecords struct {

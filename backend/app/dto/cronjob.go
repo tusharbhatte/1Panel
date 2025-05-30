@@ -33,6 +33,9 @@ type CronjobCreate struct {
 	Secret          string `json:"secret"`
 	AlertCount      uint   `json:"alertCount"`
 	AlertTitle      string `json:"alertTitle"`
+	
+	NotifyOnSuccess bool   `json:"notifyOnSuccess"`
+	NotifyOnFailure bool   `json:"notifyOnFailure"`
 }
 
 type CronjobUpdate struct {
@@ -58,6 +61,9 @@ type CronjobUpdate struct {
 	Secret          string `json:"secret"`
 	AlertCount      uint   `json:"alertCount"`
 	AlertTitle      string `json:"alertTitle"`
+	
+	NotifyOnSuccess bool   `json:"notifyOnSuccess"`
+	NotifyOnFailure bool   `json:"notifyOnFailure"`
 }
 
 type CronjobUpdateStatus struct {
@@ -107,6 +113,9 @@ type CronjobInfo struct {
 	Status         string `json:"status"`
 	Secret         string `json:"secret"`
 	AlertCount     uint   `json:"alertCount"`
+	
+	NotifyOnSuccess bool   `json:"notifyOnSuccess"`
+	NotifyOnFailure bool   `json:"notifyOnFailure"`
 }
 
 type SearchRecord struct {

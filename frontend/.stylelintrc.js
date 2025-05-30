@@ -2,12 +2,12 @@
 
 module.exports = {
     extends: [
-        'stylelint-config-standard', 
-        'stylelint-config-html/vue', 
-        'stylelint-config-standard-scss', 
-        'stylelint-config-recommended-vue/scss', 
-        'stylelint-config-recess-order', 
-        'stylelint-config-prettier', 
+        'stylelint-config-standard',
+        'stylelint-config-html/vue',
+        'stylelint-config-standard-scss',
+        'stylelint-config-recommended-vue/scss',
+        'stylelint-config-recess-order',
+        'stylelint-config-prettier',
     ],
     overrides: [
         {
@@ -18,8 +18,8 @@ module.exports = {
     rules: {
         'no-descending-specificity': null,
         'function-url-quotes': 'always',
-        'string-quotes': 'double', 
-        'unit-case': null, 
+        'string-quotes': 'double',
+        'unit-case': null,
         'color-hex-case': 'lower',
         'color-hex-length': 'long',
         'rule-empty-line-before': 'never',

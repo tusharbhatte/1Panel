@@ -33,6 +33,8 @@ export namespace Cronjob {
         hasAlert: boolean;
         alertCount: number;
         alertTitle: string;
+        notifyOnSuccess: boolean;
+        notifyOnFailure: boolean;
     }
     export interface CronjobCreate {
         name: string;
@@ -77,6 +79,8 @@ export namespace Cronjob {
         defaultDownload: string;
         retainCopies: number;
         secret: string;
+        notifyOnSuccess: boolean;
+        notifyOnFailure: boolean;
     }
     export interface CronjobDelete {
         ids: Array<number>;

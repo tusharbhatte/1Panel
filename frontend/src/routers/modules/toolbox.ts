@@ -87,6 +87,16 @@ const toolboxRouter = {
                         requiresAuth: false,
                     },
                 },
+                {
+                    path: 'mlbot',
+                    name: 'MLBot',
+                    component: () => import('@/views/toolbox/mlbot/index.vue'),
+                    hidden: true,
+                    meta: {
+                        activeMenu: '/toolbox',
+                        requiresAuth: false,
+                    },
+                },
             ],
         },
     ],

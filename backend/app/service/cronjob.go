@@ -321,6 +321,8 @@ func (u *CronjobService) Update(id uint, req dto.CronjobUpdate) error {
 	upMap["default_download"] = req.DefaultDownload
 	upMap["retain_copies"] = req.RetainCopies
 	upMap["secret"] = req.Secret
+	upMap["notify_on_success"] = req.NotifyOnSuccess
+	upMap["notify_on_failure"] = req.NotifyOnFailure
 	err = cronjobRepo.Update(id, upMap)
 	if err != nil {
 		return err

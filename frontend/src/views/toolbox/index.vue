@@ -73,5 +73,9 @@ const buttons = [
         label: 'Fail2ban',
         path: '/toolbox/fail2ban',
     },
+    {
+        label: 'mlBot 通知',
+        path: '/toolbox/mlbot',
+    },
 ];
 </script>

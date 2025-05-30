@@ -30,6 +30,7 @@ var (
 	redisService      = service.NewIRedisService()
 
 	cronjobService = service.NewICronjobService()
+	mlbotService   = service.NewIMLBotService()
 
 	hostService     = service.NewIHostService()
 	groupService    = service.NewIGroupService()
