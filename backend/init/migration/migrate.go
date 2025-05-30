@@ -108,6 +108,7 @@ func Init() {
 		migrations.AddLicenseVerify,
 
 		migrations.AddMcpServer,
+		migrations.AddMLBotMessagePrefix,
 	})
 	if err := m.Migrate(); err != nil {
 		global.LOG.Error(err)

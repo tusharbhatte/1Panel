@@ -12,9 +12,7 @@
                         <PrimaryLogo v-else />
                     </div>
                     <h3 class="description">{{ globalStore.themeConfig.title || $t('setting.description') }}</h3>
-                    <div class="flex justify-center">
-                        <SystemUpgrade />
-                    </div>
+                    <!-- SystemUpgrade component removed for secondary development -->
                     <div class="flex w-full justify-center my-5 flex-wrap md:flex-row gap-4">
                         <el-link @click="toDoc" class="system-link">
                             <el-icon><Document /></el-icon>
@@ -42,7 +40,7 @@
 <script lang="ts" setup>
 import { getSettingInfo, getSystemAvailable } from '@/api/modules/setting';
 import { onMounted, ref } from 'vue';
-import SystemUpgrade from '@/components/system-upgrade/index.vue';
+// SystemUpgrade component removed for secondary development
 import { GlobalStore } from '@/store';
 import PrimaryLogo from '@/assets/images/1panel-logo.svg?component';
 import { storeToRefs } from 'pinia';

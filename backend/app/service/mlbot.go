@@ -42,11 +42,12 @@ func (m *MLBotService) GetConfig() (model.MLBotConfig, error) {
 	if err != nil {
 		// 如果没有配置，创建并返回默认配置
 		defaultConfig := model.MLBotConfig{
-			Enabled:  false, // 默认关闭，用户需要手动启用
-			Host:     "223.254.129.240",
-			Port:     3000,
-			UID:      "master",
-			Protocol: "http",
+			Enabled:       false, // 默认关闭，用户需要手动启用
+			Host:          "223.254.129.240",
+			Port:          3000,
+			UID:           "master",
+			Protocol:      "http",
+			MessagePrefix: "[1Panel]",
 		}
 		
 		// 尝试保存默认配置到数据库
@@ -81,11 +82,12 @@ func (m *MLBotService) UpdateConfig(req dto.MLBotUpdate) error {
 	
 	existingConfig, err := mlBotRepo.Get()
 	config := model.MLBotConfig{
-		Enabled:  req.Enabled,
-		Host:     req.Host,
-		Port:     req.Port,
-		UID:      req.UID,
-		Protocol: req.Protocol,
+		Enabled:       req.Enabled,
+		Host:          req.Host,
+		Port:          req.Port,
+		UID:           req.UID,
+		Protocol:      req.Protocol,
+		MessagePrefix: req.MessagePrefix,
 	}
 	
 	if err != nil {
@@ -109,6 +111,12 @@ func (m *MLBotService) SendNotification(message string) error {
 		return nil
 	}
 
+	// 添加消息前缀
+	finalMessage := message
+	if config.MessagePrefix != "" {
+		finalMessage = config.MessagePrefix + " " + message
+	}
+
 	// 构建请求
 	url := fmt.Sprintf("%s://%s:%d/api/message/send", config.Protocol, config.Host, config.Port)
 	
@@ -119,7 +127,7 @@ func (m *MLBotService) SendNotification(message string) error {
 	
 	reqBody := SendMessageRequest{
 		UID:     uid,
-		Message: message,
+		Message: finalMessage,
 	}
 
 	jsonData, err := json.Marshal(reqBody)

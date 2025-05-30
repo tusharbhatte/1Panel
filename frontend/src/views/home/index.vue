@@ -9,11 +9,7 @@
             ]"
         >
             <template #route-button>
-                <div class="router-button" v-if="!isProductPro">
-                    <el-button link type="primary" @click="toUpload">
-                        {{ $t('license.levelUpPro') }}
-                    </el-button>
-                </div>
+                <!-- License upgrade button removed for secondary development -->
             </template>
         </RouterButton>
 
@@ -257,8 +253,6 @@
                 </CardWithHeader>
             </el-col>
         </el-row>
-
-        <LicenseImport ref="licenseRef" />
     </div>
 </template>
 
@@ -267,7 +261,6 @@ import { onMounted, onBeforeUnmount, ref, reactive } from 'vue';
 import Status from '@/views/home/status/index.vue';
 import App from '@/views/home/app/index.vue';
 import VCharts from '@/components/v-charts/index.vue';
-import LicenseImport from '@/components/license-import/index.vue';
 import CardWithHeader from '@/components/card-with-header/index.vue';
 import i18n from '@/lang';
 import { Dashboard } from '@/api/interface/dashboard';
@@ -275,7 +268,8 @@ import { dateFormatForSecond, computeSize, computeSizeFromKBs } from '@/utils/ut
 import { useRouter } from 'vue-router';
 import { loadBaseInfo, loadCurrentInfo } from '@/api/modules/dashboard';
 import { getIOOptions, getNetworkOptions } from '@/api/modules/host';
-import { getSettingInfo, loadUpgradeInfo } from '@/api/modules/setting';
+import { getSettingInfo } from '@/api/modules/setting';
+// Upgrade-related functions removed for secondary development
 import { GlobalStore } from '@/store';
 const router = useRouter();
 const globalStore = GlobalStore();
@@ -300,7 +294,6 @@ const timeNetDatas = ref<Array<string>>([]);
 const ioOptions = ref();
 const netOptions = ref();
 
-const licenseRef = ref();
 const isProductPro = ref();
 
 const searchInfo = reactive({
@@ -623,12 +616,9 @@ const hideEntrance = () => {
 };
 
 const loadUpgradeStatus = async () => {
-    const res = await loadUpgradeInfo();
-    if (res.data.testVersion || res.data.newVersion || res.data.latestVersion) {
-        globalStore.hasNewVersion = true;
-    } else {
-        globalStore.hasNewVersion = false;
-    }
+    // Upgrade status check removed for secondary development
+    // Always set to false since upgrade functionality is disabled
+    globalStore.hasNewVersion = false;
 };
 
 const loadSafeStatus = async () => {
@@ -643,9 +633,7 @@ const onBlur = () => {
     isActive.value = false;
 };
 
-const toUpload = () => {
-    licenseRef.value.acceptParams();
-};
+// toUpload function removed - license functionality disabled for secondary development
 
 onMounted(() => {
     isProductPro.value = globalStore.isProductPro;

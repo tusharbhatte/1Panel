@@ -62,9 +62,7 @@ func (s *SettingRouter) InitRouter(Router *gin.RouterGroup) {
 		settingRouter.POST("/backup/record/download", baseApi.DownloadRecord)
 		settingRouter.POST("/backup/record/del", baseApi.DeleteBackupRecord)
 
-		settingRouter.POST("/upgrade", baseApi.Upgrade)
-		settingRouter.POST("/upgrade/notes", baseApi.GetNotesByVersion)
-		settingRouter.GET("/upgrade", baseApi.GetUpgradeInfo)
+		// Upgrade-related routes removed for secondary development
 		settingRouter.GET("/basedir", baseApi.LoadBaseDir)
 		settingRouter.POST("/api/config/generate/key", baseApi.GenerateApiKey)
 		settingRouter.POST("/api/config/update", baseApi.UpdateApiConfig)

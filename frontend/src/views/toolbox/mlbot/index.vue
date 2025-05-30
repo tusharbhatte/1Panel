@@ -41,6 +41,17 @@
                                     <el-input v-model="form.uid" placeholder="接收通知的用户ID" style="width: 300px" />
                                 </el-form-item>
 
+                                <el-form-item label="消息前缀" prop="messagePrefix">
+                                    <el-input
+                                        v-model="form.messagePrefix"
+                                        placeholder="例如: [1Panel] 或 [服务器]"
+                                        style="width: 300px"
+                                    />
+                                    <div style="font-size: 12px; color: #909399; margin-top: 4px">
+                                        自定义消息前缀，会添加在每条通知消息前面
+                                    </div>
+                                </el-form-item>
+
                                 <el-form-item>
                                     <el-button type="primary" @click="onSave" :loading="saving">
                                         {{ $t('commons.button.save') }}
@@ -87,6 +98,7 @@ const form = reactive({
     port: 3000,
     uid: 'master',
     protocol: 'http',
+    messagePrefix: '[1Panel]',
 });
 
 const rules = {
@@ -124,6 +136,7 @@ const onSave = async () => {
             port: form.port,
             uid: form.uid,
             protocol: form.protocol,
+            messagePrefix: form.messagePrefix,
         });
         MsgSuccess(i18n.global.t('commons.msg.operationSuccess'));
     } catch (error) {
@@ -166,6 +179,7 @@ const loadConfig = async () => {
         form.port = res.data.port;
         form.uid = res.data.uid;
         form.protocol = res.data.protocol;
+        form.messagePrefix = res.data.messagePrefix || '[1Panel]';
     } catch (error) {
         const errorMessage = error?.response?.data?.message || error?.message || error?.toString() || '未知错误';
         MsgError('加载配置失败: ' + errorMessage);
@@ -183,6 +197,7 @@ const onInitialize = async () => {
         form.port = 3000;
         form.uid = 'master';
         form.protocol = 'http';
+        form.messagePrefix = '[1Panel]';
 
         // 保存配置
         await updateMLBotConfig({
@@ -191,6 +206,7 @@ const onInitialize = async () => {
             port: form.port,
             uid: form.uid,
             protocol: form.protocol,
+            messagePrefix: form.messagePrefix,
         });
 
         MsgSuccess('配置初始化成功');

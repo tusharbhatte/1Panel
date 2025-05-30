@@ -469,3 +469,16 @@ var AddMcpServer = &gormigrate.Migration{
 		return nil
 	},
 }
+
+var AddMLBotMessagePrefix = &gormigrate.Migration{
+	ID: "20250530-add-mlbot-message-prefix",
+	Migrate: func(tx *gorm.DB) error {
+		if err := tx.AutoMigrate(&model.MLBotConfig{}); err != nil {
+			return err
+		}
+		// 为现有的mlBot配置添加默认消息前缀
+		return tx.Model(&model.MLBotConfig{}).
+			Where("message_prefix = ? OR message_prefix IS NULL", "").
+			Update("message_prefix", "[1Panel]").Error
+	},
+}

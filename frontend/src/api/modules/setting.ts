@@ -6,24 +6,7 @@ import { Backup } from '../interface/backup';
 import { Setting } from '../interface/setting';
 import { TimeoutEnum } from '@/enums/http-enum';
 
-export const UploadFileData = (params: FormData) => {
-    return http.upload('/licenses/upload', params);
-};
-
-export const getLicense = () => {
-    return http.get<Setting.License>(`/licenses/get`);
-};
-export const getLicenseStatus = () => {
-    return http.get<Setting.LicenseStatus>(`/licenses/get/status`);
-};
-
-export const syncLicense = () => {
-    return http.post(`/licenses/sync`);
-};
-
-export const unbindLicense = () => {
-    return http.post(`/licenses/unbind`);
-};
+// License-related functions removed for secondary development
 
 export const getSettingInfo = () => {
     return http.post<Setting.SettingInfo>(`/settings/search`);
@@ -206,16 +189,7 @@ export const loadSnapshotSize = (param: SearchWithPage) => {
     return http.post<Array<Setting.SnapshotFile>>(`/settings/snapshot/size`, param);
 };
 
-// upgrade
-export const loadUpgradeInfo = () => {
-    return http.get<Setting.UpgradeInfo>(`/settings/upgrade`);
-};
-export const loadReleaseNotes = (version: string) => {
-    return http.post<string>(`/settings/upgrade/notes`, { version: version });
-};
-export const upgrade = (version: string) => {
-    return http.post(`/settings/upgrade`, { version: version });
-};
+// Upgrade-related functions removed for secondary development
 
 // api config
 export const generateApiKey = () => {

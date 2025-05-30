@@ -10,7 +10,7 @@
                 </a>
             </div>
             <div class="flex flex-row gap-2 md:flex-col lg:flex-row">
-                <SystemUpgrade :footer="true" />
+                <!-- SystemUpgrade component removed for secondary development -->
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import SystemUpgrade from '@/components/system-upgrade/index.vue';
+// SystemUpgrade component removed for secondary development
 import { GlobalStore } from '@/store';
 
 const globalStore = GlobalStore();

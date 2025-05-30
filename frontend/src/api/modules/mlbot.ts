@@ -7,6 +7,7 @@ export interface MLBotConfig {
     port: number;
     uid: string;
     protocol: string;
+    messagePrefix: string;
 }
 
 export interface MLBotConfigRequest {
@@ -15,6 +16,7 @@ export interface MLBotConfigRequest {
     port: number;
     uid: string;
     protocol: string;
+    messagePrefix: string;
 }
 
 export interface MLBotTestRequest {

@@ -126,25 +126,12 @@
                         </div>
                     </el-form-item>
                     <div v-if="globalStore.isIntl">
-                        <el-form-item v-if="(dialogData.rowData!.hasSpec) && !isProductPro">
-                            <span>{{ $t('toolbox.clam.alertHelper') }}</span>
-                            <el-button link type="primary" @click="toUpload">
-                                {{ $t('license.levelUpPro') }}
-                            </el-button>
-                        </el-form-item>
+                        <!-- License upgrade prompts removed for secondary development -->
                     </div>
                     <div v-if="!globalStore.isIntl">
                         <el-form-item prop="hasAlert">
                             <el-checkbox v-model="dialogData.rowData!.hasAlert" :label="$t('alert.isAlert')" />
                             <span class="input-help">{{ $t('alert.clamHelper') }}</span>
-                        </el-form-item>
-                        <el-form-item
-                            v-if="(dialogData.rowData!.hasAlert || dialogData.rowData!.hasSpec) && !isProductPro"
-                        >
-                            <span>{{ $t('toolbox.clam.alertHelper') }}</span>
-                            <el-button link type="primary" @click="toUpload">
-                                {{ $t('license.levelUpPro') }}
-                            </el-button>
                         </el-form-item>
                         <el-form-item
                             prop="alertCount"
@@ -175,7 +162,6 @@
                 </el-button>
             </span>
         </template>
-        <LicenseImport ref="licenseRef" />
     </el-drawer>
 </template>
 
@@ -185,7 +171,6 @@ import { Rules } from '@/global/form-rules';
 import FileList from '@/components/file-list/index.vue';
 import i18n from '@/lang';
 import { ElForm } from 'element-plus';
-import LicenseImport from '@/components/license-import/index.vue';
 import DrawerHeader from '@/components/drawer-header/index.vue';
 import { MsgError, MsgSuccess } from '@/utils/message';
 import { Toolbox } from '@/api/interface/toolbox';
@@ -195,7 +180,6 @@ import { storeToRefs } from 'pinia';
 import { GlobalStore } from '@/store';
 
 const globalStore = GlobalStore();
-const licenseRef = ref();
 const { isProductPro } = storeToRefs(globalStore);
 interface DialogProps {
     title: string;
@@ -363,9 +347,7 @@ const hasHour = (item: any) => {
     return item.specType !== 'perHour' && item.specType !== 'perNMinute' && item.specType !== 'perNSecond';
 };
 
-const toUpload = () => {
-    licenseRef.value.acceptParams();
-};
+// toUpload function removed - license functionality disabled for secondary development
 
 const changeSpecType = () => {
     let item = dialogData.value.rowData!.specObj;

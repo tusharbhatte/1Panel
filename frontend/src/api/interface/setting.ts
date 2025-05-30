@@ -62,7 +62,7 @@ export namespace Setting {
         apiKey: string;
         ipWhiteList: string;
         apiKeyValidityTime: number;
-        licenseVerify: string;
+        // licenseVerify field removed for secondary development
     }
     export interface SettingUpdate {
         key: string;
@@ -168,34 +168,5 @@ export namespace Setting {
         size: string;
         upload: string;
     }
-    export interface UpgradeInfo {
-        testVersion: string;
-        newVersion: string;
-        latestVersion: string;
-        releaseNote: string;
-    }
-
-    export interface License {
-        licenseName: string;
-        assigneeName: string;
-        productPro: string;
-        versionConstraint: string;
-        trial: boolean;
-        offline: boolean;
-        status: string;
-        message: string;
-        smsUsed: number;
-        smsTotal: number;
-    }
-    export interface LicenseStatus {
-        productPro: string;
-        trial: boolean;
-        status: string;
-    }
-    export interface ApiConfig {
-        apiInterfaceStatus: string;
-        apiKey: string;
-        ipWhiteList: string;
-        apiKeyValidityTime: number;
-    }
+    // License and Upgrade interfaces removed for secondary development
 }

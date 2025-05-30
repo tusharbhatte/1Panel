@@ -25,11 +25,12 @@ func (b *BaseApi) GetMLBotConfig(c *gin.Context) {
 	}
 	
 	info := dto.MLBotInfo{
-		Enabled:  config.Enabled,
-		Host:     config.Host,
-		Port:     config.Port,
-		UID:      config.UID,
-		Protocol: config.Protocol,
+		Enabled:       config.Enabled,
+		Host:          config.Host,
+		Port:          config.Port,
+		UID:           config.UID,
+		Protocol:      config.Protocol,
+		MessagePrefix: config.MessagePrefix,
 	}
 	helper.SuccessWithData(c, info)
 }
@@ -41,7 +42,7 @@ func (b *BaseApi) GetMLBotConfig(c *gin.Context) {
 // @Success 200
 // @Security ApiKeyAuth
 // @Security Timestamp
-// @Router /mlbot/config [put]
+// @Router /mlbot/config [post]
 // @x-panel-log {"bodyKeys":["enabled"],"paramKeys":[],"BeforeFunctions":[],"formatZH":"更新 mlBot 配置","formatEN":"update mlBot config"}
 func (b *BaseApi) UpdateMLBotConfig(c *gin.Context) {
 	var req dto.MLBotUpdate

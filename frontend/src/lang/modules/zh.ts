@@ -1646,7 +1646,9 @@ const message = {
         doc2: '使用手册',
         currentVersion: '当前运行版本：',
 
-        license: '许可证',
+        license: '许可证 (已禁用)',
+        // License functionality disabled for secondary development
+        /*
         advancedMenuHide: '高级功能菜单隐藏',
         showMainAdvancedMenu: '如果只保留 1 个菜单，则侧边栏只会显示高级功能主菜单',
         showAll: '全部显示',
@@ -1698,6 +1700,7 @@ const message = {
         monitor: '升级专业版可以查看网站的实时状态、访客趋势、访客来源、请求日志等信息。',
         alert: '升级专业版可通过短信接收告警信息，并查看告警日志，全面掌控各类关键事件，确保系统运行无忧。',
         app: '升级专业版可以通过手机 APP 管理服务器并查看监控等功能。',
+        */
     },
     clean: {
         scan: '开始扫描',
